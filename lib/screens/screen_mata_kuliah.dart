@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import '../api/get_mahasiswa.dart';
+import '../api/get_mata_kuliah.dart';
 import '../components/list_mahasiswa.dart';
+import '../components/list_mata_kuliah.dart';
 import '../models/models.dart';
 
-class ListMahasiswaScreen extends StatefulWidget {
-  const ListMahasiswaScreen({Key? key}) : super(key: key);
+class ListMataKuliahScreen extends StatefulWidget {
+  const ListMataKuliahScreen({Key? key}) : super(key: key);
 
   @override
-  State<ListMahasiswaScreen> createState() => _ListMahasiswaScreenState();
+  State<ListMataKuliahScreen> createState() => _ListMataKuliahScreenState();
 }
 
-class _ListMahasiswaScreenState extends State<ListMahasiswaScreen> {
+class _ListMataKuliahScreenState extends State<ListMataKuliahScreen> {
   int halaman = 1;
   int angkatan = 20;
   @override
@@ -33,11 +35,11 @@ class _ListMahasiswaScreenState extends State<ListMahasiswaScreen> {
           Padding(
             padding: EdgeInsets.all(10),
           ),
-          FutureBuilder<List<MahasiswaIlkom>>(
-            future: MahasiswaAPI.getAllMahasiswaIlkom(halaman),
+          FutureBuilder<List<MataKuliahIlkom>>(
+            future: MataKuliahAPI.getAllMataKuliahIlkomS1(halaman),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return ListMahasiswa(mahasiswa: snapshot.data ?? []);
+                return ListMataKuliah(matakuliah: snapshot.data ?? []);
               } else {
                 return const Center(child: CircularProgressIndicator());
               }

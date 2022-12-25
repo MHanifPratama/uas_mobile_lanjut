@@ -4,21 +4,21 @@ import '../api/get_mahasiswa.dart';
 import '../models/models.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ListMahasiswa extends StatefulWidget {
-  final List<MahasiswaIlkom> mahasiswa;
-  ListMahasiswa({Key? key, required this.mahasiswa}) : super(key: key);
+class ListMataKuliah extends StatefulWidget {
+  final List<MataKuliahIlkom> matakuliah;
+  ListMataKuliah({Key? key, required this.matakuliah}) : super(key: key);
 
   @override
-  State<ListMahasiswa> createState() => _ListMahasiswaState();
+  State<ListMataKuliah> createState() => _ListMataKuliahState();
 }
 
-class _ListMahasiswaState extends State<ListMahasiswa> {
-  late List<MahasiswaIlkom> ListMahasiswa;
+class _ListMataKuliahState extends State<ListMataKuliah> {
+  late List<MataKuliahIlkom> ListMataKuliah;
 
   @override
   void initState() {
     super.initState();
-    ListMahasiswa = widget.mahasiswa;
+    ListMataKuliah = widget.matakuliah;
   }
 
   @override
@@ -34,9 +34,9 @@ class _ListMahasiswaState extends State<ListMahasiswa> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: ListMahasiswa.length,
+              itemCount: ListMataKuliah.length,
               itemBuilder: (context, index) {
-                final mahasiswa = ListMahasiswa[index];
+                final mahasiswa = ListMataKuliah[index];
                 return listItem(mahasiswa);
               },
               scrollDirection: Axis.vertical,
@@ -47,7 +47,7 @@ class _ListMahasiswaState extends State<ListMahasiswa> {
     );
   }
 
-  Widget listItem(MahasiswaIlkom mahasiswa_ilkom) {
+  Widget listItem(MataKuliahIlkom mata_kuliah) {
     return Card(
       elevation: 2,
       margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
@@ -55,24 +55,13 @@ class _ListMahasiswaState extends State<ListMahasiswa> {
         title: Padding(
           padding: const EdgeInsets.only(bottom: 7),
           child: Text(
-            mahasiswa_ilkom.nama_mahasiswa.toString(),
+            mata_kuliah.nama_mk.toString(),
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
         ),
-        trailing: Icon(Icons.call),
-        isThreeLine: true,
-        // selectedTileColor: Colors.blue,
-        onTap: () async {
-          String id = mahasiswa_ilkom.id_peserta_didik.toString();
-          // print(id);
-          // String hp = MahasiswaAPI.getTelephone(id) as String;
-          // print('ini hp' + hp);
-          // launch("tel:${hp}");
-          // print();
-          launch("tel:${await MahasiswaAPI.getTelephone(id)}");
-        },
+        onTap: () {},
         subtitle: Text(
-            "${mahasiswa_ilkom.npm.toString()}\n${mahasiswa_ilkom.program_studi.toString()}"),
+            "${mata_kuliah.status.toString()}\n${mata_kuliah.nm_prodi.toString()}"),
         contentPadding: const EdgeInsets.all(10),
       ),
     );

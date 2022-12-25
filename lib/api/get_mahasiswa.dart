@@ -6,8 +6,6 @@ import '../api/get_token.dart';
 
 class MahasiswaAPI {
   static Future<List<MahasiswaIlkom>> getAllMahasiswaIlkom(int halaman) async {
-    // token.getToken();
-    // print('dwadawda');
     String url =
         'http://onedata.unila.ac.id/api/live/0.1/mahasiswa/list_mahasiswa?page=$halaman&limit=50&sort_by=ASC&id_prodi=54BBD27B-2376-4CAE-9951-76EF54BD2CA2';
     print('aaaa1');
@@ -22,8 +20,6 @@ class MahasiswaAPI {
         // print(json['data']);
         final mahasiswa = <MahasiswaIlkom>[];
         json['data'].forEach((v) {
-          // print('AAAA = ' + v["NPM"]);
-          // print('AAAA = ' + v["NPM"][1]);
           mahasiswa.add(MahasiswaIlkom.fromJson(v));
         });
         return mahasiswa;
@@ -59,23 +55,5 @@ class MahasiswaAPI {
       print('mahasiswa gagal 2');
       throw Exception('Failed to ANU');
     }
-
-    // if (response.statusCode == 200) {
-    //   final Map<String, dynamic> json = jsonDecode(response.body);
-    //   if (json['data'] != null) {
-    //     // print(json['data']);
-    //     final mhs = <MahasiswaIlkomDetail>[];
-    //     json['data'].forEach((v) {
-    //       mhs.add(MahasiswaIlkomDetail.fromJson(v));
-    //     });
-    //     return mhs;
-    //   } else {
-    //     print('mahasiswa gagal');
-    //     return [];
-    //   }
-    // } else {
-    //   print('mahasiswa gagal 2');
-    //   throw Exception('Failed to ANU');
-    // }
   }
 }
