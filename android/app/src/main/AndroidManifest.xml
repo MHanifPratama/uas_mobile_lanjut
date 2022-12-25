@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.uap_mobile_lanjut">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="uap_mobile_lanjut"
         android:name="${applicationName}"
